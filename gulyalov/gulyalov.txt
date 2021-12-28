@@ -1,0 +1,29 @@
+My first change gulyalov
+Private Sub Rashet()
+Dim sale As Single, i As Integer
+i = Worksheets("Накладная").Range("A3").CurrentRegion.Rows.Count + 1
+With Worksheets("Накладная")
+.Cells(2 + i, 3).Value = Worksheets("Форма").TextBox5.Text
+.Range("B3") = Worksheets("Форма").TextBox1.Text
+.Range("D3") = Worksheets("Форма").TextBox2.Text
+.Range("B4") = Worksheets("Форма").TextBox3.Text
+.Range("D4") = Worksheets("Форма").TextBox4.Text
+.Cells(2 + i, 1).Value = Worksheets("Форма").ComboBox1.Text
+End With
+sale = 0
+Worksheets("Накладная").Cells(2 + i, 2).FormulaLocal = "=ВПР(A" + Trim(CStr(i + 2)) + ";товары!A2:B7;2)"
+'If Worksheets("Накладная").Cells(2 + i, 1). Text = "Компьютер" Then Worksheets("Накладная").Cells(2+i,2).Value = Worksheets("Товары").Cells(2, 2).Value
+'If Worksheets("Накладная").Cells(2 + i, 1). Text = "Монитор" Then Worksheets("Накладная").Cells(2+i,2).Value = Worksheets("Товары").Cells(3, 2).Value
+'If Worksheets("Накладная").Cells(2 + i, 1). Text = "Процессор" Then Worksheets("Накладная").Cells(2+i,2).Value = Worksheets("Товары").Cells(4, 2).Value
+'If Worksheets("Накладная").Cells(2 + i, 1). Text = "Материнская плата" Then Worksheets("Накладная").Cells(2+i,2).Value = Worksheets("Товары").Cells(5, 2).Value
+'If Worksheets("Накладная").Cells(2 + i, 1). Text = "Клавиатура" Then Worksheets("Накладная").Cells(2+i,2).Value = Worksheets("Товары").Cells(6, 2).Value
+If Worksheets("Форма").CheckBox1.Value = True Then sale = sale + Worksheets("Услуги").Cells(2, 2).Value
+If Worksheets("Форма").CheckBox1.Value = True Then sale = sale + Worksheets("Услуги").Cells(3, 2).Value
+If Worksheets("Форма").CheckBox1.Value = True Then sale = sale + Worksheets("Услуги").Cells(4, 2).Value
+If Worksheets("Форма").CheckBox1.Value = True Then sale = sale + Worksheets("Услуги").Cells(5, 2).Value
+Worksheets("Накладная").Cells(2 + i, 4).Value = sale
+With Worksheets("Накладная")
+.Cells(2 + i, 5).Value = .Cells(2 + i, 2).Value * .Cells(2 + i, 3).Value + .Cells(2 + i, 4).Value
+End With
+i = 0
+End Sub

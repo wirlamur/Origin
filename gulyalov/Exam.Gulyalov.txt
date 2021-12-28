@@ -1,0 +1,45 @@
+My first change Gulyalov
+Dim ЦенаБилета As Single
+Dim Срок As Single
+Dim Расходы As Single
+Dim i As Single
+
+
+Private Sub UserForm_Initialize()
+ListBox1.AddItem "Москва"
+ListBox1.AddItem "Пенза"
+ListBox1.AddItem "Ярославль"
+ListBox1.AddItem "Сыктывкар"
+ListBox1.AddItem "Княгинино"
+End Sub
+Private Sub CommandButton1_Click()
+i = ListBox1.ListIndex
+Select Case i
+Case 0
+ЦенаБилета = 600
+Case 1, 2
+ЦенаБилета = 400
+Case 3
+ЦенаБилета = 500
+Case 4
+ЦенаБилета = 100
+End Select
+If TextBox1.Text = "" Then
+MsgBox ("Введите срок!!!")
+ElseIf TextBox1.Text <= 0 Then
+MsgBox ("Срок не может быть отрицательным или равным нулю!!!")
+ElseIf TextBox1.Text = Fix(TextBox1.Text) Then
+Срок = CSng(TextBox1.Text)
+Расходы = ЦенаБилета + Срок * 100
+TextBox2.Text = CStr(Расходы)
+Else
+MsgBox ("Введите целое число!!!")
+End If
+End Sub
+Private Sub CommandButton2_Click()
+TextBox1.Text = ""
+TextBox2.Text = ""
+End Sub
+Private Sub CommandButton3_Click()
+End
+End Sub
